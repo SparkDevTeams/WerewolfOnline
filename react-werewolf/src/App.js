@@ -3,6 +3,20 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state={apiResponse:""};
+  }
+
+  callAPI(){
+    fetch("http://localhost:5000/testAPI")
+    .then(res => res.text())
+    .then(res => this.setState({apiResponse: res}));
+  }
+
+  componentDidMount(){
+    this.callAPI();
+  }
 
 
   render() {
@@ -22,6 +36,7 @@ class App extends Component {
           Learn React
         </a>
       </header>
+      <p>{this.state.apiResponse}</p>
     </div>
     )}
 }
