@@ -7,6 +7,7 @@ testAPIRouter = require("./routes/testAPI")
 
 app.use(cors());
 app.use(express.json());
+
 app.use("/testAPI",testAPIRouter)
 
  
