@@ -1,44 +1,45 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={apiResponse:""};
+    this.state = { apiResponse: "" };
   }
 
-  callAPI(){
+  callAPI() {
     fetch("http://localhost:5000/testAPI")
-    .then(res => res.text())
-    .then(res => this.setState({apiResponse: res}));
+      .then((res) => res.text())
+      .then((res) => this.setState({ apiResponse: res }));
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.callAPI();
   }
 
-
   render() {
-    return(
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <p>{this.state.apiResponse}</p>
-    </div>
-    )}
+    return (
+      <div className="App">
+        <form>
+          <div className="form-control">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username-field"
+              placeholder="Enter Username"
+              required
+            ></input>
+          </div>
+        </form>
+        <button type="submit" class="username-btn">
+          Enter
+        </button>
+        <p>{this.state.apiResponse}</p>
+      </div>
+    );
+  }
 }
 
 export default App;
