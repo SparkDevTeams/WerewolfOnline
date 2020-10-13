@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
+import HomePage from "./containers/homepage";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -20,26 +22,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <form>
-          <div className="form-control">
-            <label for="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              id="username-field"
-              placeholder="Enter Username"
-              required
-            ></input>
+      <Router>
+        <div className="App" style={{ margin: 0, padding: 0 }}>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+          </Switch>
           </div>
-        </form>
-        <button type="submit" class="username-btn">
-          Enter
-        </button>
-        <p>{this.state.apiResponse}</p>
-      </div>
-    );
-  }
+      </Router>
+ );}
 }
 
 export default App;
