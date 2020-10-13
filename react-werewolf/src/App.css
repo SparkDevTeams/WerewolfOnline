@@ -1,5 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
+  background: #262626;
+  height: 100vh;
 }
 
 .App-logo {
@@ -24,8 +31,36 @@
   color: white;
 }
 
+.header-logo {
+  width: 20%;
+  float: left;
+  left: 1%;
+}
+
+.title-container {
+  position: absolute;
+  margin: auto;
+  top: 50vh;
+  right: 0;
+  bottom: 50vh;
+  left: 0;
+}
+
+.title {
+  top: 20vh;
+}
+
+#username-field::placeholder {
+  color: #bcbcbc;
+  background-color: #262626;
+}
+
 .App-link {
   color: #61dafb;
+}
+
+.username-label {
+  color: #bcbcbc;
 }
 
 @keyframes App-logo-spin {
