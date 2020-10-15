@@ -28,13 +28,46 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #ffffff;
+}
+
+.header {
+  background-color: #000;
+  position: absolute;
+  top: 0;
 }
 
 .header-logo {
-  width: 20%;
   float: left;
-  left: 1%;
+  width: 20%;
+}
+
+.background-container {
+  width: 100%;
+  height: 100vh;
+}
+
+.image {
+  background-size: container;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.left,
+.right {
+  float: left;
+  width: 50%;
+}
+
+.villager-background {
+  opacity: 50%;
+  height: 100vh;
+  width: 35rem;
+}
+
+.werewolf-background {
+  height: 100vh;
+  width: 35rem;
 }
 
 .title-container {
@@ -44,15 +77,39 @@
   right: 0;
   bottom: 50vh;
   left: 0;
+  padding-top: 12%;
 }
 
 .title {
   top: 20vh;
+  font-size: 2.5rem;
+  color: #bcbcbc;
+  top: 2%;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+#username-field {
+  text-align: center;
+  background: transparent;
+  font-size: 1.25rem;
+  border: none;
+  outline: none;
+  height: 30px;
+  transition: height 1s;
+  -webkit-transition: height 1s;
 }
 
 #username-field::placeholder {
   color: #bcbcbc;
-  background-color: #262626;
+  /* background-color: #262626; */
+}
+
+#username-field:hover {
+  height: 50px;
+  border-bottom: 1px solid #bcbcbc;
 }
 
 .App-link {
@@ -61,6 +118,12 @@
 
 .username-label {
   color: #bcbcbc;
+}
+
+.username-btn {
+  width: 5rem;
+  margin-top: 1%;
+  font-size: 1rem;
 }
 
 @keyframes App-logo-spin {
