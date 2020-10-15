@@ -1,9 +1,20 @@
 import React, { Component } from "react";
 import sparkdevLogo from "./../images/SparkDev.png";
+import werewolfBackground from "./../images/warewolf.jpg";
+import villagerBackground from "./../images/Villager.png";
 class HomePage extends Component {
 render() {
     return (
       <div className="App">
+       <div className="main-container">
+        <div className="background-container">
+            <div className="left">
+                <img src={werewolfBackground} className = "image werewolf-background" alt="werewolf-img"></img>
+            </div>
+            <div className="right">
+                <img src={villagerBackground} className = "image villager-background" alt="village-img"></img>
+            </div>
+        </div>
         <div className="header">
           <img
             src={sparkdevLogo}
@@ -30,6 +41,7 @@ render() {
             Play
           </button>
         </div>
+       </div>
       </div>
     );
   }
