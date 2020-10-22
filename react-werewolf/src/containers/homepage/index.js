@@ -1,11 +1,17 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import sparkdevLogo from "./../images/SparkDev.png";
 import werewolfBackground from "./../images/warewolf.jpg";
 import villagerBackground from "./../images/Villager.png";
-class HomePage extends Component {
-render() {
+
+export default function Play() {
+
+
+  const [username, setName] = useState('');
+  const [room, setRoom] = useState('1');
+  
     return (
-      <div className="App">
+      <div className="HomePage">
        <div className="main-container">
         <div className="background-container">
             <div className="left">
@@ -26,7 +32,6 @@ render() {
           <h1 className="title">
           WEREWOLF
           </h1>
-          <form className="username-form" autocomplete="off">
             <div className="form-control">
               <input
                 type="text"
@@ -34,12 +39,13 @@ render() {
                 id="username-field"
                 placeholder="Enter Username"
                 required
-              ></input>
+                onChange={(event) => setName(event.target.value)}
+              />
             </div>
-          </form>
-          <button type="submit" className="username-btn">
-            Play
-          </button>
+        
+          <Link  onClick={e => (!username) ? e.preventDefault() : null} to={`/waitingroom?username=${username}&room=${room}`}>
+          <button type="submit" className={'username-btn'}> Play</button>
+          </Link>
         </div>
        </div>
        <div className="about-container">
@@ -170,6 +176,5 @@ render() {
       </div>
     );
   }
-}
 
-export default HomePage;
+

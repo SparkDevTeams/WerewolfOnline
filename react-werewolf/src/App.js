@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import logo from "./logo.svg";
 import "./App.css";
 import HomePage from "./containers/homepage";
+import WaitingRoom from "./containers/waitingroom";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 class App extends Component {
@@ -16,9 +17,6 @@ class App extends Component {
       .then((res) => this.setState({ apiResponse: res }));
   }
 
-  componentDidMount() {
-    this.callAPI();
-  }
 
   render() {
     return (
@@ -26,6 +24,7 @@ class App extends Component {
         <div className="App" style={{ margin: 0, padding: 0 }}>
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <Route exact path="/waitingroom" component={WaitingRoom}  />
           </Switch>
           </div>
       </Router>
