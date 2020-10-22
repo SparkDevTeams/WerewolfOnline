@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import queryString from 'query-string';
 
 const WaitingRoom = ({ location }) => {
+
+  const [username, setName] = useState('');
+  const [room, setRoom] = useState('');
+
   useEffect(() => {
     const data = queryString.parse(location.search);
-
-    console.log(data)
+    setName(data.username);
+    setRoom(1);
   })
 
     return (
@@ -19,7 +23,7 @@ const WaitingRoom = ({ location }) => {
         </div>
         <div className="title-container">
           <h1 className="title">
-          WEREWOLF
+             {username}  
           </h1>
            
         </div>
