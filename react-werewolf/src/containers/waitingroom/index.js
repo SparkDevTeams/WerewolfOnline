@@ -1,11 +1,27 @@
 import React, { useState, useEffect } from "react";
 import queryString from 'query-string';
+import { Socket } from "socket.io-client";
+import io from 'socket.io-client';
+
+let socket;
 
 const WaitingRoom = ({ location }) => {
-  useEffect(() => {
-    const data = queryString.parse(location.search);
+  const [username, setName] = useState('');
+  const [room, setRoom] = useState('1');
+  const ENDPOINT = 'localhost:5000';
 
-    console.log(data)
+  useEffect(() => {
+    const { name, room } = queryString.parse(location.search);
+
+    socket = io(ENDPOINT);
+
+    setName(name);
+    setRoom(room);
+
+    console.log(socket);
+
+  //  console.log(name, room);
+  //  console.log(data);
   })
 
     return (

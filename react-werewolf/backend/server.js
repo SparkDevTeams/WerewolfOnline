@@ -5,16 +5,22 @@ const cors = require('cors');
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 
-const router = require('./router');
+//const router = require('./router');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
 app.use(cors());
-app.use(router);
+//app.use(router);
 
-io.on('connection',(socket)=>{
+io.on('connection', (socket) => {
+  console.log('We have a new connection!');
+
+  socket.on('disconnect', () => { 
+    console.log('User has left!');
+    
+  })
   
 socket.on("join",(username , room, callback) => {
   //Just print it for now 
@@ -30,13 +36,13 @@ socket.on("join",(username , room, callback) => {
 })
 
 const port = process.env.PORT || 5000;
-testAPIRouter = require("./routes/testAPI") 
+//testAPIRouter = require("./routes/testAPI") 
 
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/testAPI",testAPIRouter)
+//app.use("/testAPI",testAPIRouter)
 
 
 
