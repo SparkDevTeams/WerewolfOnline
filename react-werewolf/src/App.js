@@ -17,9 +17,6 @@ class App extends Component {
       .then((res) => this.setState({ apiResponse: res }));
   }
 
-  componentDidMount() {
-    this.callAPI();
-  }
 
   render() {
     return (
