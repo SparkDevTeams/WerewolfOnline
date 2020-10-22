@@ -15,6 +15,8 @@ function random(min,max){
 
 }
 
+//Need handling instance when array is empty
+
 function assignRole(){
 //get the random selection from role array 
 const randomSelection=roles[random(0,roles.length-1)]
@@ -25,9 +27,13 @@ if((role !== "Villager") && ((typeof role) !== "object")  ){
     roles=roles.filter(  (item!==role) )
     role=randomSelection
 }
+//if it is an array such as with the werewolf where there a re multiple types then assign a random type
 else if (typeof role === "object"){
-role=randomSelection[]
-
+//get random role within array
+const index=random(0,randomSelection.length-1)
+role=randomSelection[index]
+//remove specific role
+randomSelection.splice(index,1);
 }
 
 //return 
