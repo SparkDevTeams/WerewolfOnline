@@ -1,6 +1,10 @@
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap");
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .App {
@@ -12,12 +16,6 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -35,11 +33,14 @@
   background-color: #000;
   position: absolute;
   top: 0;
+  width: 100%;
+  padding: 5px;
 }
 
 .header-logo {
   float: left;
-  width: 20%;
+  /* width: 20%; */
+  width: 15rem;
 }
 
 .background-container {
@@ -73,7 +74,7 @@
 .title-container {
   position: absolute;
   margin: auto;
-  top: 50vh;
+  top: 45vh;
   right: 0;
   bottom: 50vh;
   left: 0;
@@ -82,13 +83,14 @@
 
 .title {
   top: 20vh;
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: #bcbcbc;
   top: 2%;
   position: absolute;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
+  font-family: "Henny Penny";
 }
 
 #username-field {
@@ -104,12 +106,19 @@
 
 #username-field::placeholder {
   color: #bcbcbc;
-  /* background-color: #262626; */
 }
 
 #username-field:hover {
   height: 50px;
   border-bottom: 1px solid #bcbcbc;
+}
+
+#username-field {
+  color: #bcbcbc;
+}
+
+#username-field:focus {
+  color: #bcbcbc;
 }
 
 .App-link {
@@ -121,16 +130,112 @@
 }
 
 .username-btn {
-  width: 5rem;
+  width: 6.5rem;
   margin-top: 1%;
   font-size: 1rem;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  border-radius: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.username-btn:hover {
+  background-color: #bcbcbc;
+}
+
+.about-container {
+  margin-top: 2rem;
+  padding: 2%;
+}
+
+.about-title {
+  font-family: "Henny Penny";
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 0 10px;
+}
+
+.row {
+  margin: 0 -5px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.about-info {
+  width: 40%;
+  margin: 15px auto 25px auto;
+}
+
+.about-card {
+  padding: 50px;
+  text-align: center;
+}
+
+.about-img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+.about-btn {
+  background-color: #6c757d;
+  color: #fff;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+.about-btn:hover {
+  background-color: #282c34;
+  cursor: pointer;
+}
+
+/* Responsive Tablet/Small Laptop Media Queries */
+@media screen and (min-width: 750px) and (max-width: 1024px) {
+  .villager-background {
+    margin-top: 25%;
+    height: 75vh;
+    width: 22rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .werewolf-background {
+    margin-top: 25%;
+    height: 75vh;
+    width: 22rem;
+  }
+}
+
+/* Responsive Mobile (One Column) Media Queries */
+@media screen and (max-width: 600px) {
+  .about-title {
+    text-align: center;
+  }
+  .villager-background {
+    margin-top: 20%;
+    opacity: 20%;
+    height: 80vh;
+    width: 10rem;
+  }
+
+  .werewolf-background {
+    margin-top: 20%;
+    opacity: 20%;
+    height: 80vh;
+    width: 10rem;
+  }
+
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
   }
 }
