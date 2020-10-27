@@ -19,8 +19,10 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => { 
     console.log('User has left!');
-    
-  })
+
+    socket.join(user.room);  
+
+  });
   
 socket.on("join",(username , room, callback) => {
   //Just print it for now 
@@ -33,7 +35,7 @@ socket.on("join",(username , room, callback) => {
 })
 
 
-})
+});
 
 const port = process.env.PORT || 5000;
 //testAPIRouter = require("./routes/testAPI") 

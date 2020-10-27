@@ -13,7 +13,7 @@ const WaitingRoom = ({ location }) => {
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
 
-    socket = io(ENDPOINT);
+    socket = io();
 
     setName(name);
     setRoom(room);
@@ -22,7 +22,7 @@ const WaitingRoom = ({ location }) => {
 
   //  console.log(name, room);
   //  console.log(data);
-  })
+  }, [ENDPOINT, location.search]);
 
     return (
       <div className="WaitingRoom">
