@@ -17,7 +17,7 @@ app.get('/', function(req, res){
 const server = http.createServer(app);
 const io = socketio(server);
 const port = process.env.PORT || 5000;
-var clients =  [];
+let users = [];
 
 server.listen(port,() => {
   console.log(`Server running on port: ${port}`);
@@ -31,6 +31,16 @@ socket.on("waiting",({username , room}) => {
 
   if(getUser(socket.id)!=undefined){
     io.emit('getuser', getUser(socket.id).username);
+  }
+
+  if(getUser(socket.id)!=undefined){
+    let length = getUsersInRoom(1).length;
+    for(let i=0; i< length; i++){
+      if(!users.includes(getUsersInRoom(1)[i].username)){
+        users.push(getUsersInRoom(1)[i].username)
+      } 
+    }
+    io.emit('getusers',users); 
   }
 
 });

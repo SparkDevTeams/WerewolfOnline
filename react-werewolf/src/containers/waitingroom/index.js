@@ -10,6 +10,7 @@ const WaitingRoom = ({ location }) => {
   const [username, setName] = useState('');
   const [room, setRoom] = useState('');
   const ENDPOINT = 'localhost:5000'
+  
 
   useEffect(() => {
     const {username,room} = queryString.parse(location.search);
@@ -20,15 +21,17 @@ const WaitingRoom = ({ location }) => {
     
     socket.emit('waiting', {username, room});
 
-    
-    socket.on('getuser', function(data){
-      users.push(data);
+    socket.on('getusers', function(data){
+      console.log(data)
+      users = Array.from(data);
+      
     });
     
-  
-     
+   
   }, [ENDPOINT, location.search])
 
+  
+  console.log(users)
     return (
       <div className="WaitingRoom">
        <div className="main-container">
@@ -40,7 +43,7 @@ const WaitingRoom = ({ location }) => {
         </div>
         <div className="title-container">
           <h1 className="title">
-             {users[0]}  
+              
           </h1>
            
         </div>
