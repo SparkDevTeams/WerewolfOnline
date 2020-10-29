@@ -1,51 +1,52 @@
+
 const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const cors = require('cors');
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
-
-
+const { worker } = require('cluster');
 
 const app = express();
-const server = http.createServer(app);
-const io = socketio(server);
-
-app.use(cors());
-
-
-io.on('connection',(socket)=>{
-  
-socket.on("join",(username , room, callback) => {
-  //Just print it for now 
-  console.log(username)
-  const { error, user } = addUser({ id: socket.id, username , room });
-  if(error) return callback(error);
-
-  socket.join(user.room);
- 
-})
-
-
-})
-
-const port = process.env.PORT || 5000;
-testAPIRouter = require("./routes/testAPI") 
-
-
 app.use(cors());
 app.use(express.json());
 
-app.use("/testAPI",testAPIRouter)
-
-
-
 app.get('/', function(req, res){
-    res.sendFile('index.html', {root : __dirname + '/'});
-  });
-
-app.listen(port,() => {
-    console.log(`Server running on port: ${port}`);
+  res.sendFile('index.html', {root : __dirname + '/'});
 });
+const server = http.createServer(app);
+const io = socketio(server);
+const port = process.env.PORT || 5000;
+var clients =  [];
+
+server.listen(port,() => {
+  console.log(`Server running on port: ${port}`);
+});
+
+io.on('connection',(socket)=>{
+  
+socket.on("waiting",({username , room}) => {
+ 
+  const { error, user } = addUser({ id: socket.id, username , room });
+
+  if(getUser(socket.id)!=undefined){
+    io.emit('getuser', getUser(socket.id).username);
+  }
+
+});
+
+
+  
+    // let user = getUser(socket.id).username;
+    // console.log(user)
+    // return user;
+  
+
+  
+});
+
+
+
+
 
 

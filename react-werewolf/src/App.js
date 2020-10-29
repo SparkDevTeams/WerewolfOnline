@@ -3,18 +3,13 @@ import React, { Component } from "react";
 import "./App.css";
 import HomePage from "./containers/homepage";
 import WaitingRoom from "./containers/waitingroom";
+// import Game from "./containers/game";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { apiResponse: "" };
-  }
-
-  callAPI() {
-    fetch("http://localhost:5000/testAPI")
-      .then((res) => res.text())
-      .then((res) => this.setState({ apiResponse: res }));
   }
 
 
@@ -25,6 +20,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/waitingroom" component={WaitingRoom}  />
+            {/* <Route exact path="/game" component={Game}  /> */}
           </Switch>
           </div>
       </Router>

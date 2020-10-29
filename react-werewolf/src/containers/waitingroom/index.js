@@ -1,16 +1,33 @@
 import React, { useState, useEffect } from "react";
 import queryString from 'query-string';
+import io from 'socket.io-client';
+
+let socket;
+let users = [];
 
 const WaitingRoom = ({ location }) => {
 
   const [username, setName] = useState('');
   const [room, setRoom] = useState('');
+  const ENDPOINT = 'localhost:5000'
 
   useEffect(() => {
-    const data = queryString.parse(location.search);
-    setName(data.username);
+    const {username,room} = queryString.parse(location.search);
+
+    socket = io(ENDPOINT)
+    setName(username);
     setRoom(1);
-  })
+    
+    socket.emit('waiting', {username, room});
+
+    
+    socket.on('getuser', function(data){
+      users.push(data);
+    });
+    
+  
+     
+  }, [ENDPOINT, location.search])
 
     return (
       <div className="WaitingRoom">
@@ -23,7 +40,7 @@ const WaitingRoom = ({ location }) => {
         </div>
         <div className="title-container">
           <h1 className="title">
-             {username}  
+             {users[0]}  
           </h1>
            
         </div>
