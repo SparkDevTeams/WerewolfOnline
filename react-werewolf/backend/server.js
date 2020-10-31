@@ -29,9 +29,9 @@ socket.on("waiting",({username , room}) => {
  
   const { error, user } = addUser({ id: socket.id, username , room });
 
-  if(getUser(socket.id)!=undefined){
-    io.emit('getuser', getUser(socket.id).username);
-  }
+  // if(getUser(socket.id)!=undefined){
+  //   io.emit('getuser', getUser(socket.id).username);
+  // }
 
   if(getUser(socket.id)!=undefined){
     let length = getUsersInRoom(1).length;
@@ -40,7 +40,11 @@ socket.on("waiting",({username , room}) => {
         users.push(getUsersInRoom(1)[i].username)
       } 
     }
-    io.emit('getusers',users); 
+
+    // console.log(users.length)
+
+
+    io.emit('getusers',Object.values(users)); 
   }
 
 });
