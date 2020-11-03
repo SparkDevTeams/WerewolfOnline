@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
 import queryString from 'query-string';
 import io from 'socket.io-client';
 
@@ -30,6 +31,8 @@ const WaitingRoom = ({ location }) => {
    
   }, [ENDPOINT, location.search])
 
+  console.log(users)
+
     return (
       <div className="WaitingRoom">
        <div className="main-container">
@@ -38,6 +41,10 @@ const WaitingRoom = ({ location }) => {
             <div>{users[1]}</div> 
 
         </div>
+
+        <Link  onClick={e => (users.length===10) ? e.preventDefault() : null} to={`/game`}>
+          <button type="submit"> Play</button>
+        </Link>
     
        </div>
       </div>

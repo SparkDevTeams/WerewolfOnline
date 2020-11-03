@@ -3,9 +3,27 @@ There could be multiple Villagers
 There  could only be one of the Special Roles
 
 */
+import React, { useState, useEffect } from "react";
+import io from 'socket.io-client';
 
+let socket;
 
+const Game = ({ location }) => {
 
+    const [users, setUsers] = useState('');
+    const ENDPOINT = 'localhost:5000'
+    socket = io(ENDPOINT)
+    
+    useEffect(() => {
+
+      socket.on('getusers', function(data){
+       setUsers(data);  
+       
+      });
+    
+    }, [ENDPOINT, location.search])
+
+    console.log(users)
 let  roles = ["Villager","Doctor","AlphaWerewolf","Werewolf","Junior Werewolf","Detective",]
 
 const  random=(min,max)=>{
@@ -35,3 +53,16 @@ randomSelection.splice(index,1);
 //return 
 return role;
 }
+return (
+    <div className="WaitingRoom">
+     <div className="main-container">
+      <div className="background-container">
+         
+      </div>
+      </div>
+      </div>
+    );
+
+}
+
+export default Game;
