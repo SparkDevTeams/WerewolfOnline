@@ -1,3 +1,103 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import './styles.css';
+import sparkdevLogo from "./../images/SparkDev.png";
+import villager from "./../images/Villager.png";
+
+function Game() {
+    return(
+    <div className="Game">
+            <div className="main-container">
+                <div className="header">
+                    <img
+                    src={sparkdevLogo}
+                    alt="sparkdev-logo"
+                    className="header-logo"
+                    ></img>
+                </div>
+                <div className="grid-container">
+                    <div className="grid-item">
+                        <img 
+                        src={villager}
+                        alt="villager-img"
+                        className="player-img"
+                        ></img>
+                    </div>
+                    <div className="grid-item">
+                        <img 
+                        src={villager}
+                        alt="villager-img"
+                        className="player-img"
+                        ></img>
+                    </div>
+                    <div className="grid-item">
+                        <img 
+                        src={villager}
+                        alt="villager-img"
+                        className="player-img"
+                        ></img>
+                    </div>
+                    <div className="grid-item">
+                        <img 
+                        src={villager}
+                        alt="villager-img"
+                        className="player-img"
+                        ></img>
+                    </div>
+                    <div className="grid-item">
+                        <img 
+                        src={villager}
+                        alt="villager-img"
+                        className="player-img"
+                        ></img>
+                    </div>
+                    <div className="grid-item">
+                        <img 
+                        src={villager}
+                        alt="villager-img"
+                        className="player-img"
+                        ></img>
+                    </div>
+                    <div className="grid-item">
+                        <img 
+                        src={villager}
+                        alt="villager-img"
+                        className="player-img"
+                        ></img>
+                    </div>
+                    <div className="grid-item">
+                        <img 
+                        src={villager}
+                        alt="villager-img"
+                        className="player-img"
+                        ></img>
+                    </div>
+                    <div className="grid-item">
+                        <img 
+                        src={villager}
+                        alt="villager-img"
+                        className="player-img"
+                        ></img>
+                    </div>
+                </div>
+                <div className="player-container">
+                <h3 className="player-name">Username: ????</h3>
+                    <div className="current-player">
+                        <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="current-player-img"
+                        ></img>
+                    </div>   
+                </div>
+            </div>
+        </div>
+);
+}
+
+export default Game;
+
+
 /*
 There could be multiple Villagers
 There  could only be one of the Special Roles
