@@ -41,7 +41,7 @@ socket.on("waiting",({username , room}) => {
       } 
     }
 
-    // console.log(users.length)
+    console.log(users.length)
 
 
     io.emit('getusers',Object.values(users)); 
