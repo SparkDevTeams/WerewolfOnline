@@ -41,8 +41,8 @@ const WaitingRoom = ({ location }) => {
             <div>{ users[1]}</div> 
         </div>
 
-        <Link  onClick={e => (Object.keys(users).length!=10) ? e.preventDefault() : null} to={`/game`}>
-          <button type="submit"> Play</button>
+        <Link  onClick={e => (users.length!=10) ? e.preventDefault() : null} to={`/game`}>
+          <button type="submit"> Ready</button>
         </Link>
     
        </div>
