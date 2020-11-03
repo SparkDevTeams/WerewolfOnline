@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import queryString from 'query-string';
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 
 let socket;
 
@@ -16,7 +16,7 @@ const WaitingRoom = ({ location }) => {
   useEffect(() => {
     const {username,room} = queryString.parse(location.search);
 
-    socket = io(ENDPOINT)
+    // socket = io(ENDPOINT)
     setName(username);
     setRoom(1);
     

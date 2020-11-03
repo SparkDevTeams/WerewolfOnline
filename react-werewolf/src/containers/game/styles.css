@@ -1,0 +1,77 @@
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 65%;
+  position: absolute;
+  top: 6rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  box-shadow: -6px 5px #000;
+}
+
+.grid-item {
+  border: 1px solid #bcbcbc;
+  border-width: thin;
+}
+
+.player-container {
+  display: inline-block;
+  margin-top: 30%;
+  width: 65%;
+}
+
+.current-player {
+  left: 50%;
+  padding: 20px;
+}
+
+.player-name {
+  position: relative;
+  display: inline-block;
+  /* float: left; */
+  color: #bcbcbc;
+  left: 50%;
+  top: 13rem;
+}
+
+.player-role {
+  position: relative;
+  float: right;
+  color: #bcbcbc;
+  right: 5rem;
+  top: 5rem;
+}
+
+.player-img {
+  width: 4.5rem;
+  height: 6rem;
+}
+
+.current-player-img {
+  width: 10rem;
+  height: 10rem;
+  border: 1px solid #bcbcbc;
+  border-width: thin;
+}
+
+/* Responsive Mobile (One Column) Media Queries */
+@media screen and (max-width: 600px) {
+  .player-img {
+    width: 3rem;
+    height: 4rem;
+  }
+
+  .grid-container {
+    left: 50%;
+  }
+}
