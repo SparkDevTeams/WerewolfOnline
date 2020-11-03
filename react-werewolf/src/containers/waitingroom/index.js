@@ -1,60 +1,44 @@
 import React, { useState, useEffect } from "react";
 import queryString from 'query-string';
-import sparkdevLogo from "./../images/SparkDev.png";
-import './style.css';
+import io from 'socket.io-client';
+
+let socket;
+
 
 const WaitingRoom = ({ location }) => {
 
   const [username, setName] = useState('');
   const [room, setRoom] = useState('');
+  const [users, setUsers] = useState('');
+  const ENDPOINT = 'localhost:5000'
+  
 
   useEffect(() => {
-    const data = queryString.parse(location.search);
-    setName(data.username);
-    setRoom(1);
+    const {username,room} = queryString.parse(location.search);
 
-  })
+    socket = io(ENDPOINT)
+    setName(username);
+    setRoom(1);
+    
+    socket.emit('waiting', {username, room});
+
+    socket.on('getusers', function(data){
+     setUsers(data);  
+     
+    });
+    
+   
+  }, [ENDPOINT, location.search])
 
     return (
       <div className="WaitingRoom">
        <div className="main-container">
         <div className="background-container">
-            
-        </div>
-        <div className="header">
-        <img
-            src={sparkdevLogo}
-            alt="sparkdev-logo"
-            className="header-logo"
-          ></img>
-         
-        </div>
-      
-        <div className="title-container">
-          <h1 className="title">
-             
- <table id="t01">
-  <tr>
-    <th>{username}</th>
-    <th>{username}</th>
-  </tr>
-  <tr>
-    <th>{username}</th>
-    <th>{username}</th>
-  </tr>
-  <tr>
-    <th>{username}</th>
-    <th>{username}</th>
-  </tr>
-  <tr>
-    <th>{username}</th>
-    <th>{username}</th>
-  </tr>  
-</table>
-          </h1>
-
+            <div>{users[0]}</div> 
+            <div>{users[1]}</div> 
 
         </div>
+    
        </div>
       </div>
     );
