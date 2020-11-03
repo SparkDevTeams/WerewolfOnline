@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import queryString from 'query-string';
+import sparkdevLogo from "./../images/SparkDev.png";
+import './style.css';
 
 const WaitingRoom = ({ location }) => {
 
@@ -10,6 +12,7 @@ const WaitingRoom = ({ location }) => {
     const data = queryString.parse(location.search);
     setName(data.username);
     setRoom(1);
+
   })
 
     return (
@@ -19,13 +22,38 @@ const WaitingRoom = ({ location }) => {
             
         </div>
         <div className="header">
+        <img
+            src={sparkdevLogo}
+            alt="sparkdev-logo"
+            className="header-logo"
+          ></img>
          
         </div>
+      
         <div className="title-container">
           <h1 className="title">
-             {username}  
+             
+ <table id="t01">
+  <tr>
+    <th>{username}</th>
+    <th>{username}</th>
+  </tr>
+  <tr>
+    <th>{username}</th>
+    <th>{username}</th>
+  </tr>
+  <tr>
+    <th>{username}</th>
+    <th>{username}</th>
+  </tr>
+  <tr>
+    <th>{username}</th>
+    <th>{username}</th>
+  </tr>  
+</table>
           </h1>
-           
+
+
         </div>
        </div>
       </div>

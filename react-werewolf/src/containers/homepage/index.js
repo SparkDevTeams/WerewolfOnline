@@ -42,8 +42,9 @@ export default function Play() {
                 required
                 onChange={(event) => setName(event.target.value)}
               />
+
             </div>
-        
+      
           <Link  onClick={e => (!username) ? e.preventDefault() : null} to={`/waitingroom?username=${username}&room=${room}`}>
           <button type="submit" className={'username-btn'}> Play</button>
           </Link>
