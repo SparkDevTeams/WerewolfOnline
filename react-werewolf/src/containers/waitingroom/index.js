@@ -30,27 +30,15 @@ const WaitingRoom = ({ location }) => {
    
   }, [ENDPOINT, location.search])
 
-  // console.log(users)
     return (
       <div className="WaitingRoom">
        <div className="main-container">
         <div className="background-container">
-            
+            <div>{users[0]}</div> 
+            <div>{users[1]}</div> 
+
         </div>
-        <div className="header">
-         
-        </div>
-        <div className="title-container">
-          <h1 >
-              {users[0]}
-              
-          </h1>
-          <h1 >
-              
-              {users[1]}
-          </h1>
-           
-        </div>
+    
        </div>
       </div>
     );
