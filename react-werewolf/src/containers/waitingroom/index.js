@@ -28,21 +28,20 @@ const WaitingRoom = ({ location }) => {
      
     });
     
+    
    
   }, [ENDPOINT, location.search])
 
-  console.log(users)
-
+ 
     return (
       <div className="WaitingRoom">
        <div className="main-container">
         <div className="background-container">
-            <div>{users[0]}</div> 
-            <div>{users[1]}</div> 
-
+            <div>{ users[0]}</div> 
+            <div>{ users[1]}</div> 
         </div>
 
-        <Link  onClick={e => (users.length===10) ? e.preventDefault() : null} to={`/game`}>
+        <Link  onClick={e => (Object.keys(users).length!=10) ? e.preventDefault() : null} to={`/game`}>
           <button type="submit"> Play</button>
         </Link>
     
