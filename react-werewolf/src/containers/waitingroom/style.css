@@ -37,12 +37,12 @@ table, th, td {
 }
 
 th, td {
-    padding: 5px;
+    padding: 15px;  
     text-align: center;       
 }
 
   #t01 {
-    width: 20%;    
+    width: 20%;     
     margin-left: auto;
     margin-right: auto;
   }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
 import queryString from 'query-string';
 import io from 'socket.io-client';
 import sparkdevLogo from "./../images/SparkDev.png";
@@ -26,8 +27,7 @@ const WaitingRoom = ({ location }) => {
      setUsers(data);  
      
     });
-    
-   
+     
   }, [ENDPOINT, location.search])
 
     return (
@@ -74,9 +74,14 @@ const WaitingRoom = ({ location }) => {
   </tr>  
 </table>
 
-</h1>
+</h1>   
+        <Link  onClick={e => (users.length!=10) ? e.preventDefault() : null} to={`/game`}>
+          <button type="submit"> Ready</button>
+        </Link> 
         </div>
-    
+
+       
+
        </div>
     );
   }
