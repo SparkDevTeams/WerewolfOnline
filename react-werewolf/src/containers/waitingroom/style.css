@@ -1,3 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap");
+
+.werewolfbackground1{
+    float: right;
+    width: 450px;
+    padding: 70px 0;
+}
+
+body{
+    background-color: #262626;  
+}
+.table-container {
+    position: absolute;
+    margin: 0 auto;
+    top: 15vh;
+    right: 0;
+    bottom: 0vh; 
+    left: 0;
+    padding-top: 6%;
+    color: #bcbcbc;
+    font-family: "Henny Penny";
+  }
+  
+  .table {
+    /* top: 20vh; */
+    font-size: 0.5rem;
+    /* top: 2%; */
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
 
 table, th, td {
   border: 1px solid black;
@@ -5,13 +37,13 @@ table, th, td {
 }
 
 th, td {
-    padding: 15px;
-    text-align: center;   
-    
+    padding: 15px;  
+    text-align: center;       
 }
 
   #t01 {
-    width: 100%;    
+    width: 20%;     
     margin-left: auto;
     margin-right: auto;
   }
+
