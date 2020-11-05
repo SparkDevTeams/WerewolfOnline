@@ -27,18 +27,17 @@ const WaitingRoom = ({ location }) => {
      setUsers(data);  
      
     });
-    
-    
-   
+     
   }, [ENDPOINT, location.search])
 
- 
     return (
       <div className="WaitingRoom">
        <div className="main-container">
         <div className="background-container">
-            <div>{ users[0]}</div> 
-            <div>{ users[1]}</div> 
+            <div>{users[0]}</div> 
+            <div>{users[1]}</div> 
+          
+            
         </div>
 
         <Link  onClick={e => (users.length!=10) ? e.preventDefault() : null} to={`/game`}>
