@@ -19,7 +19,7 @@ const port = process.env.PORT || 5000;
 let users = [];
 
 //Random role assignment
-let rolesmap = new Map();
+let rolesmap = {};
 let  roles = ["Villager","Doctor","Alpha Werewolf","Werewolf","Wolf Seer","Detective","Fool", "Seer", "BodyGuard", "Gunner", "Detective"]
 
 const  random=(min,max)=>{
@@ -69,23 +69,20 @@ socket.on("waiting",({username , room}) => {
   if(getUser(socket.id)!=undefined){
     let length = getUsersInRoom(1).length;
     for(let i=0; i< length; i++){
-      if(!users.includes(getUsersInRoom(1)[i].username)){
-        users.push(getUsersInRoom(1)[i].username)
-        rolesmap.set(getUsersInRoom(1)[i].username,assignRole())
+      let current = getUsersInRoom(1)[i].username;
+      if(rolesmap[current]==undefined){
+        users.push(current);
+        rolesmap[current] = assignRole();
       } 
     }
-
-    console.log(users.length)
-    console.log("TEst" + rolesmap.size)
-
-
-    io.emit('getusers',Object.values(users)); 
+    
+    console.log(rolesmap.size)
+    console.log(rolesmap)
+    
+    io.emit('getusers',JSON.stringify(Object.keys(rolesmap))); 
   }
 
 });
-
-
-  
 });
 
 
