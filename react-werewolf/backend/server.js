@@ -18,6 +18,15 @@ const io = socketio(server);
 const port = process.env.PORT || 5000;
 let users = [];
 
+//Rounds activities variables
+let round1Map = {};
+let round2Map = {};
+let round3Map = {};
+let round4Map = {};
+let round5Map = {};
+let round6Map = {};
+let round7Map = {};
+
 //Random role assignment
 let rolesmap = {};
 let roles = ["Villager", "Doctor", "Alpha Werewolf", "Werewolf", "Wolf Seer", "Detective", "Fool", "Seer", "BodyGuard", "Gunner", "Detective"]
@@ -108,9 +117,3 @@ io.on('connection', (socket) => {
     io.emit('getusersandroles', JSON.stringify(Object.entries(rolesmap)));
   });
 });
-
-
-
-
-
-
