@@ -42,8 +42,10 @@ th, td {
 }
 
   #t01 {
-    width: 20%;     
+    table-layout: fixed;
+    width: 40%;
     margin-left: auto;
     margin-right: auto;
+
   }
 

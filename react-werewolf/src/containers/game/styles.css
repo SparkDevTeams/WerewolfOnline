@@ -19,6 +19,29 @@
   box-shadow: -6px 5px #000;
 }
 
+/* #game-table {
+  table-layout: fixed;
+  position: absolute;
+  top: 6rem;
+  left: 15rem;
+} */
+
+.game-cell {
+  /* float: right; */
+  display: table-cell;
+  max-width: 200px;
+  max-height: 200px;
+  padding: 20px 40px;
+  border: 1px solid #bcbcbc;
+}
+
+.cell-number {
+  position: relative;
+  float: left;
+  color: #bcbcbc;
+  font-size: 2rem;
+}
+
 .grid-item {
   border: 1px solid #bcbcbc;
   border-width: thin;
@@ -48,7 +71,7 @@
   width: 4.5rem;
   height: 6rem;
   /* Used only for placeholders */
-  opacity: 2%;
+  opacity: 50%;
 }
 
 .current-player-img {
