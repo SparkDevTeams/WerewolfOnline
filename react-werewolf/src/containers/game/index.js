@@ -60,9 +60,92 @@ return (
                     className="header-logo"
                     ></img>
                 </div>
+                {/* <div id = "game-table">
+                    <table>
+                        <tr>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        </tr>
+                    </table>
+                </div> */}
                 <div className="grid-container">
                    
                     <div className="grid-item">
+                        <p className="cell-number">1</p>
                         <img 
                         src={homepagevillager}
                         alt="villager-img"
@@ -70,6 +153,7 @@ return (
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">2</p>
                         <img 
                         src={homepagevillager}
                         alt="villager-img"
@@ -77,6 +161,7 @@ return (
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">3</p>
                         <img 
                         src={homepagevillager}
                         alt="villager-img"
@@ -84,6 +169,7 @@ return (
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">4</p>
                         <img 
                         src={homepagevillager}
                         alt="villager-img"
@@ -91,6 +177,7 @@ return (
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">5</p>
                         <img 
                         src={homepagevillager}
                         alt="villager-img"
@@ -98,6 +185,7 @@ return (
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">6</p>
                         <img 
                         src={homepagevillager}
                         alt="villager-img"
@@ -105,6 +193,7 @@ return (
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">7</p>
                         <img 
                         src={homepagevillager}
                         alt="villager-img"
@@ -112,6 +201,7 @@ return (
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">8</p>
                         <img 
                         src={homepagevillager}
                         alt="villager-img"
@@ -119,6 +209,7 @@ return (
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">9</p>
                         <img 
                         src={homepagevillager}
                         alt="villager-img"
