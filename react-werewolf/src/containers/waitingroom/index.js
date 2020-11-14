@@ -24,12 +24,12 @@ const WaitingRoom = ({ location }) => {
     socket.emit('waiting', {username, room});
 
     socket.on('getusers', function(data){
-     setUsers(data);  
-     
-    });
+      setUsers(JSON.parse(data));  
+     });
      
   }, [ENDPOINT, location.search])
 
+ 
     return (
        <div className="WaitingRoom">
         <div className="">
@@ -49,7 +49,7 @@ const WaitingRoom = ({ location }) => {
   
        <div className="table-container">
           <h1 className="table-title">
-          There are {users.length} out of 10 users online
+          There are {Object.keys(users).length} out of 10 users online
 
     <table id="t01">
      <tr>
@@ -75,7 +75,7 @@ const WaitingRoom = ({ location }) => {
 </table>
 
 </h1>   
-        <Link  onClick={e => (users.length!=10) ? e.preventDefault() : null} to={`/game`}>
+        <Link  onClick={e => (users.length!==10) ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
           <button type="submit"> Ready</button>
         </Link> 
         </div>
