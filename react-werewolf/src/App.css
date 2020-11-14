@@ -145,6 +145,7 @@
 .about-container {
   margin-top: 2rem;
   padding: 2%;
+  background-color: #bcbcbc; 
 }
 
 .about-title {
@@ -170,7 +171,7 @@
 }
 
 .about-info {
-  width: 40%;
+  width: 60%;
   margin: 15px auto 25px auto;
 }
 
