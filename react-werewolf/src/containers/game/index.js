@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import io from 'socket.io-client';
 import queryString from 'query-string';
@@ -19,6 +18,9 @@ import gunner from "./../images/Gunner White Icon.png";
 
 const Game = ({ location }) => {
     let image;
+    let unknownToSeer;
+    let action;
+    let round = 1;
     const [rolesMap, setRolesMap] = useState({}) 
     const [username, setName] = useState(queryString.parse(location.search).username);
     const ENDPOINT = 'localhost:5000'
@@ -49,6 +51,42 @@ const Game = ({ location }) => {
     // }
      
     }, [ENDPOINT, location.search])
+
+    const alphaWerewolfVote = (username) => {
+
+    }
+
+    switch (rolesMap[username]) {
+        case 'Alpha Werewolf':
+            image = alphawerewolf;
+            unknownToSeer = true;
+            action = alphaWerewolfVote();
+            break;
+        case 'BodyGuard':
+            image = bodyguard;
+            break;
+        case 'Detective':
+            image = detective;
+            break;
+        case 'Doctor':
+            image = doctor;
+            break;
+        case 'Fool':
+            image = fool;
+            break;
+        case 'Seer':
+            image = seer;
+            break;
+        case 'Villager':
+            image = villager;
+            break;
+        case 'Wolf Seer':
+            image = wolfseer;
+            break;
+        case 'Gunner':
+            image = gunner;
+            break;
+    }
    
 return (
     <div className="Game">
