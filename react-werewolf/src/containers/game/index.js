@@ -1,61 +1,55 @@
-/*
-There could be multiple Villagers
-There  could only be one of the Special Roles
 
-*/
 import React, { useState, useEffect } from "react";
 import io from 'socket.io-client';
+import queryString from 'query-string';
+import $ from 'jquery';
 import './styles.css';
 import sparkdevLogo from "./../images/SparkDev.png";
-import villager from "./../images/Villager.png";
-
-let socket;
+import homepagevillager from "./../images/Villager.png";
+import alphawerewolf from "./../images/Alpha Werewolf White Icon.png";
+import bodyguard from "./../images/Bodyguard White Icon.png";
+import detective from "./../images/Detective White Icon.png";
+import doctor from "./../images/Doctor White Icon.png";
+import fool from "./../images/Fool White Icon.png";
+import seer from "./../images/Seer White Icon.png";
+import villager from "./../images/Villager White Icon.png";
+import werewolf from "./../images/Werewolf White Icon.png";
+import wolfseer from "./../images/Wolf Seer White Icon.png";
+import gunner from "./../images/Gunner White Icon.png";
 
 const Game = ({ location }) => {
-
-    const [users, setUsers] = useState('');
+    let image;
+    const [rolesMap, setRolesMap] = useState({}) 
+    const [username, setName] = useState(queryString.parse(location.search).username);
     const ENDPOINT = 'localhost:5000'
-    socket = io(ENDPOINT)
+    const socket = io(ENDPOINT);
+  
     
     useEffect(() => {
+      
+    socket.emit('gameRoom_loaded');
 
-      socket.on('getusers', function(data){
-       setUsers(data);  
-       
-      });
+    socket.on('getusersandroles', function(data){
+      const roleData = JSON.parse(data);
+      const newRoles = {}
+      
+      roleData.forEach(([key, value]) => {
+        newRoles[key] = value
+      })
+      
+      setRolesMap(newRoles);
+    });
     
+    socket.on('timer', function (data) {
+      $('#counter').html(data.countdown);
+    });
+
+    // $('#reset').click(function() {
+    // socket.emit('reset');
+    // }
+     
     }, [ENDPOINT, location.search])
-
-    console.log(users)
-let  roles = ["Villager","Doctor","AlphaWerewolf","Werewolf","Junior Werewolf","Detective",]
-
-const  random=(min,max)=>{
-    return Math.floor((Math.random() * max) + min);
-
-}
-
-
-const  assignRole= ()=> {
-//get the random selection from role array 
-const role=roles[random(0,roles.length-1)]
-//remove the role unless its villager(there could be multiple villagers )
-if(role !== "Villager" ){
-    roles=roles.filter( (item) =>item!==role )
-    
-    console.log(roles)
-}/*
-//if it is an array such as with the werewolf where there a re multiple types then assign a random type
-else if (typeof role === "object"){
-//get random role within array
-const index=random(0,randomSelection.length-1)
-role=randomSelection[index]
-//remove specific role
-randomSelection.splice(index,1);
-}
-*/
-//return 
-return role;
-}
+   
 return (
     <div className="Game">
             <div className="main-container">
@@ -66,66 +60,158 @@ return (
                     className="header-logo"
                     ></img>
                 </div>
+                {/* <div id = "game-table">
+                    <table>
+                        <tr>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        <td className = "game-cell">
+                            <p className="cell-number">1</p>
+                            <img 
+                            src={villager}
+                            alt="villager-img"
+                            className="player-img"
+                            ></img>
+                        </td>
+                        </tr>
+                    </table>
+                </div> */}
                 <div className="grid-container">
+                   
                     <div className="grid-item">
+                        <p className="cell-number">1</p>
                         <img 
-                        src={villager}
+                        src={homepagevillager}
                         alt="villager-img"
                         className="player-img"
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">2</p>
                         <img 
-                        src={villager}
+                        src={homepagevillager}
                         alt="villager-img"
                         className="player-img"
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">3</p>
                         <img 
-                        src={villager}
+                        src={homepagevillager}
                         alt="villager-img"
                         className="player-img"
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">4</p>
                         <img 
-                        src={villager}
+                        src={homepagevillager}
                         alt="villager-img"
                         className="player-img"
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">5</p>
                         <img 
-                        src={villager}
+                        src={homepagevillager}
                         alt="villager-img"
                         className="player-img"
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">6</p>
                         <img 
-                        src={villager}
+                        src={homepagevillager}
                         alt="villager-img"
                         className="player-img"
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">7</p>
                         <img 
-                        src={villager}
+                        src={homepagevillager}
                         alt="villager-img"
                         className="player-img"
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">8</p>
                         <img 
-                        src={villager}
+                        src={homepagevillager}
                         alt="villager-img"
                         className="player-img"
                         ></img>
                     </div>
                     <div className="grid-item">
+                        <p className="cell-number">9</p>
                         <img 
-                        src={villager}
+                        src={homepagevillager}
                         alt="villager-img"
                         className="player-img"
                         ></img>
@@ -134,12 +220,15 @@ return (
                 <div className="player-container">
                     <div className="current-player">
                         <img 
-                            src={villager}
+                            src={image}
                             alt="villager-img"
                             className="current-player-img"
                         ></img>
                     </div> 
-                    <h3 className="player-name">Username: ????</h3>  
+                    <h3 className="player-name">Username: {username}</h3>  <br></br>
+                    <h3 className="player-name"> Role:  {rolesMap[username]} </h3>
+                    <div id="counter"></div>
+                    {/* <button id="reset">Reset!</button> */}
                 </div>
                 <div className="chat-container">
                     <div className="chat-display">

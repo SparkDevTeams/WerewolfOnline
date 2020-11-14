@@ -143,9 +143,14 @@
 }
 
 .about-container {
+  background-color: white;
   margin-top: 2rem;
   padding: 2%;
+<<<<<<< HEAD
   background-color: #bcbcbc; 
+=======
+  background-color: #fff;
+>>>>>>> 92c464b89cf9201f9bf3605eac3970dda43a6d32
 }
 
 .about-title {
