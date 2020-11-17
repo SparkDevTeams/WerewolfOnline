@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import io from 'socket.io-client';
 import { Link } from "react-router-dom";
 import queryString from 'query-string';
 import $ from 'jquery';
-import RoundResults from "./../roundresults"
+import RoundResults from "./../components/roundresults";
 import './styles.css';
 import sparkdevLogo from "./../images/SparkDev.png";
 import homepagevillager from "./../images/Villager.png";
@@ -21,15 +22,14 @@ import gunner from "./../images/Gunner White Icon.png";
 const Game = ({ location }) => {
     let image;
     let unknownToSeer;
-    let action;
     let round = 1;
+    const [modalShow, setModalShow] = React.useState(true);
     const [rolesMap, setRolesMap] = useState({}) 
     const [username, setName] = useState(queryString.parse(location.search).username);
     const [room, setRoom] = useState('1');
     const ENDPOINT = 'localhost:5000'
     const socket = io(ENDPOINT);
-  
-    
+
     useEffect(() => {
       
     socket.emit('gameRoom_loaded');
@@ -55,15 +55,10 @@ const Game = ({ location }) => {
      
     }, [ENDPOINT, location.search])
 
-    const alphaWerewolfVote = (username) => {
-
-    }
-
     switch (rolesMap[username]) {
         case 'Alpha Werewolf':
             image = alphawerewolf;
             unknownToSeer = true;
-            action = alphaWerewolfVote();
             break;
         case 'BodyGuard':
             image = bodyguard;
@@ -89,9 +84,14 @@ const Game = ({ location }) => {
         case 'Gunner':
             image = gunner;
             break;
+        case 'Werewolf':
+            image = werewolf;
+            break;
     }
    
 return (
+
+    
     <div className="Game">
             <div className="main-container">
                 <div className="header">
@@ -101,6 +101,7 @@ return (
                     className="header-logo"
                     ></img>
                 </div>
+                
                 {/* <div id = "game-table">
                     <table>
                         <tr>
@@ -266,18 +267,38 @@ return (
                 </div>
                 <div className="player-container">
                     <div className="current-player">
+                        
                         <img 
                             src={image}
                             alt="villager-img"
                             className="current-player-img"
                         ></img>
                     </div> 
+                    
+                    
                     <h3 className="player-name">Username: {username}</h3>  <br></br>
                     <h3 className="player-name"> Role:  {rolesMap[username]} </h3>
+                    
+                    
+                    {/* <ShowResults roundResults={true} />  */}
+                    {/* <RoundResults></RoundResults> */}
+                    {/* <RoundResults open={true}/> */}
+            
                     {/* <div id="counter"></div> */}
                     {/* <button id="reset">Reset!</button> */}
+
+                   
+                    {/* <Button onClick={() => setModalShow(true)}> 
+                        Show Round Results
+                    </Button> */}
+
+                    <RoundResults
+                        show={modalShow}
+                         onHide={() => setModalShow(false)}
+                    />
                     
                 </div>
+
                 <div className="chat-container">
                     <div className="chat-display">
                         
