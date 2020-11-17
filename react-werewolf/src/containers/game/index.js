@@ -101,89 +101,7 @@ return (
                     className="header-logo"
                     ></img>
                 </div>
-                
-                {/* <div id = "game-table">
-                    <table>
-                        <tr>
-                        <td className = "game-cell">
-                            <p className="cell-number">1</p>
-                            <img 
-                            src={villager}
-                            alt="villager-img"
-                            className="player-img"
-                            ></img>
-                        </td>
-                        <td className = "game-cell">
-                            <p className="cell-number">1</p>
-                            <img 
-                            src={villager}
-                            alt="villager-img"
-                            className="player-img"
-                            ></img>
-                        </td>
-                        <td className = "game-cell">
-                            <p className="cell-number">1</p>
-                            <img 
-                            src={villager}
-                            alt="villager-img"
-                            className="player-img"
-                            ></img>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td className = "game-cell">
-                            <p className="cell-number">1</p>
-                            <img 
-                            src={villager}
-                            alt="villager-img"
-                            className="player-img"
-                            ></img>
-                        </td>
-                        <td className = "game-cell">
-                            <p className="cell-number">1</p>
-                            <img 
-                            src={villager}
-                            alt="villager-img"
-                            className="player-img"
-                            ></img>
-                        </td>
-                        <td className = "game-cell">
-                            <p className="cell-number">1</p>
-                            <img 
-                            src={villager}
-                            alt="villager-img"
-                            className="player-img"
-                            ></img>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td className = "game-cell">
-                            <p className="cell-number">1</p>
-                            <img 
-                            src={villager}
-                            alt="villager-img"
-                            className="player-img"
-                            ></img>
-                        </td>
-                        <td className = "game-cell">
-                            <p className="cell-number">1</p>
-                            <img 
-                            src={villager}
-                            alt="villager-img"
-                            className="player-img"
-                            ></img>
-                        </td>
-                        <td className = "game-cell">
-                            <p className="cell-number">1</p>
-                            <img 
-                            src={villager}
-                            alt="villager-img"
-                            className="player-img"
-                            ></img>
-                        </td>
-                        </tr>
-                    </table>
-                </div> */}
+  
                 <div className="grid-container">
                    
                     <div className="grid-item">
@@ -193,6 +111,9 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
+                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+                            <button className="cell-btn" type="submit"> Vote </button>
+                        </Link> 
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">2</p>
@@ -202,7 +123,7 @@ return (
                         className="player-img"
                         ></img>
                         <Link  onClick={e => (rolesMap[username]!=='Wolf Seer' && rolesMap[username]!=='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
-                            <button type="submit"> Vote </button>
+                            <button className="cell-btn" type="submit"> Vote </button>
                         </Link> 
                     </div>
                     <div className="grid-item">
@@ -213,7 +134,7 @@ return (
                         className="player-img"
                         ></img>
                         <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
-                            <button type="submit"> Reveal </button>
+                            <button className="cell-btn" type="submit"> Reveal </button>
                         </Link> 
                     </div>
                     <div className="grid-item">
@@ -223,6 +144,9 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
+                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+                            <button className="cell-btn" type="submit"> Vote </button>
+                        </Link> 
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">5</p>
@@ -231,6 +155,9 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
+                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+                            <button className="cell-btn" type="submit"> Vote </button>
+                        </Link> 
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">6</p>
@@ -239,6 +166,9 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
+                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+                            <button className="cell-btn" type="submit"> Vote </button>
+                        </Link> 
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">7</p>
@@ -247,6 +177,9 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
+                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+                            <button className="cell-btn" type="submit"> Vote </button>
+                        </Link>  
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">8</p>
@@ -255,6 +188,9 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
+                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+                            <button className="cell-btn" type="submit"> Vote </button>
+                        </Link> 
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">9</p>
@@ -263,6 +199,9 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
+                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+                            <button className="cell-btn" type="submit"> Vote </button>
+                        </Link> 
                     </div>
                 </div>
                 <div className="player-container">
