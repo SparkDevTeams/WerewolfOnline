@@ -76,7 +76,7 @@ const WaitingRoom = ({ location }) => {
 
 </h1>   
         <Link  onClick={e => (users.length!==10) ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
-          <button type="submit"> Ready</button>
+          <button type="submit" className={'username-btn'}> Ready</button>
         </Link> 
         </div>
 

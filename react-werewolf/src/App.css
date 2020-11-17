@@ -140,6 +140,7 @@
 
 .username-btn:hover {
   background-color: #bcbcbc;
+  cursor: pointer;
 }
 
 .about-container {
