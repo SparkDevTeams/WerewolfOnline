@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import io from 'socket.io-client';
+import { Link } from "react-router-dom";
 import queryString from 'query-string';
 import $ from 'jquery';
+import RoundResults from "./../roundresults"
 import './styles.css';
 import sparkdevLogo from "./../images/SparkDev.png";
 import homepagevillager from "./../images/Villager.png";
@@ -23,6 +25,7 @@ const Game = ({ location }) => {
     let round = 1;
     const [rolesMap, setRolesMap] = useState({}) 
     const [username, setName] = useState(queryString.parse(location.search).username);
+    const [room, setRoom] = useState('1');
     const ENDPOINT = 'localhost:5000'
     const socket = io(ENDPOINT);
   
@@ -197,6 +200,9 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
+                        <Link  onClick={e => (rolesMap[username]!=='Wolf Seer' && rolesMap[username]!=='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+                            <button type="submit"> Vote </button>
+                        </Link> 
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">3</p>
@@ -205,6 +211,9 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
+                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+                            <button type="submit"> Reveal </button>
+                        </Link> 
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">4</p>
@@ -265,8 +274,9 @@ return (
                     </div> 
                     <h3 className="player-name">Username: {username}</h3>  <br></br>
                     <h3 className="player-name"> Role:  {rolesMap[username]} </h3>
-                    <div id="counter"></div>
+                    {/* <div id="counter"></div> */}
                     {/* <button id="reset">Reset!</button> */}
+                    
                 </div>
                 <div className="chat-container">
                     <div className="chat-display">
