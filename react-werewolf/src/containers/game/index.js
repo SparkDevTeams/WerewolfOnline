@@ -1,8 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import io from 'socket.io-client';
+import { Link } from "react-router-dom";
 import queryString from 'query-string';
 import $ from 'jquery';
+import RoundResults from "./../roundresults"
 import './styles.css';
 import sparkdevLogo from "./../images/SparkDev.png";
 import homepagevillager from "./../images/Villager.png";
@@ -19,8 +20,12 @@ import gunner from "./../images/Gunner White Icon.png";
 
 const Game = ({ location }) => {
     let image;
+    let unknownToSeer;
+    let action;
+    let round = 1;
     const [rolesMap, setRolesMap] = useState({}) 
     const [username, setName] = useState(queryString.parse(location.search).username);
+    const [room, setRoom] = useState('1');
     const ENDPOINT = 'localhost:5000'
     const socket = io(ENDPOINT);
   
@@ -49,6 +54,42 @@ const Game = ({ location }) => {
     // }
      
     }, [ENDPOINT, location.search])
+
+    const alphaWerewolfVote = (username) => {
+
+    }
+
+    switch (rolesMap[username]) {
+        case 'Alpha Werewolf':
+            image = alphawerewolf;
+            unknownToSeer = true;
+            action = alphaWerewolfVote();
+            break;
+        case 'BodyGuard':
+            image = bodyguard;
+            break;
+        case 'Detective':
+            image = detective;
+            break;
+        case 'Doctor':
+            image = doctor;
+            break;
+        case 'Fool':
+            image = fool;
+            break;
+        case 'Seer':
+            image = seer;
+            break;
+        case 'Villager':
+            image = villager;
+            break;
+        case 'Wolf Seer':
+            image = wolfseer;
+            break;
+        case 'Gunner':
+            image = gunner;
+            break;
+    }
    
 return (
     <div className="Game">
@@ -159,6 +200,9 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
+                        <Link  onClick={e => (rolesMap[username]!=='Wolf Seer' && rolesMap[username]!=='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+                            <button type="submit"> Vote </button>
+                        </Link> 
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">3</p>
@@ -167,6 +211,9 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
+                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+                            <button type="submit"> Reveal </button>
+                        </Link> 
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">4</p>
@@ -227,8 +274,9 @@ return (
                     </div> 
                     <h3 className="player-name">Username: {username}</h3>  <br></br>
                     <h3 className="player-name"> Role:  {rolesMap[username]} </h3>
-                    <div id="counter"></div>
+                    {/* <div id="counter"></div> */}
                     {/* <button id="reset">Reset!</button> */}
+                    
                 </div>
                 <div className="chat-container">
                     <div className="chat-display">
