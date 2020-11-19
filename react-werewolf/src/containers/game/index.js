@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import io from 'socket.io-client';
 import { Link } from "react-router-dom";
 import queryString from 'query-string';
 import $ from 'jquery';
-import RoundResults from "./../components/roundresults";
 import './styles.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import RoundResults from "./../components/roundresults";
 import sparkdevLogo from "./../images/SparkDev.png";
 import homepagevillager from "./../images/Villager.png";
 import alphawerewolf from "./../images/Alpha Werewolf White Icon.png";
@@ -22,7 +22,8 @@ import gunner from "./../images/Gunner White Icon.png";
 const Game = ({ location }) => {
     let image;
     let unknownToSeer;
-    let round = 1;
+    let round = 4;
+    let action;
     const [modalShow, setModalShow] = React.useState(true);
     const [rolesMap, setRolesMap] = useState({}) 
     const [username, setName] = useState(queryString.parse(location.search).username);
@@ -45,9 +46,9 @@ const Game = ({ location }) => {
       setRolesMap(newRoles);
     });
     
-    socket.on('timer', function (data) {
-      $('#counter').html(data.countdown);
-    });
+    // socket.on('timer', function (data) {
+    //   $('#counter').html(data.countdown);
+    // });
 
     // $('#reset').click(function() {
     // socket.emit('reset');
@@ -55,40 +56,83 @@ const Game = ({ location }) => {
      
     }, [ENDPOINT, location.search])
 
+    
+    //See approppiate button depending on role
+    function Vote(props) {
+        return <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+        <button className="cell-btn" type="submit"> Vote </button>
+    </Link>;
+      }
+      
+    function Reveal(props) {
+        return  <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+        <button className="cell-btn" type="submit"> Reveal </button>
+    </Link> ;
+      }
+
+    function Save(props) {
+        return  <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+        <button className="cell-btn" type="submit"> Save </button>
+    </Link> ;
+      }
+
+    function Select(props) {
+        return  <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+        <button className="cell-btn" type="submit"> Select </button>
+    </Link> ;
+      }
+
+      function Shoot(props) {
+        return  <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
+        <button className="cell-btn" type="submit"> Shoot </button>
+    </Link> ;
+      }
+      
     switch (rolesMap[username]) {
         case 'Alpha Werewolf':
             image = alphawerewolf;
             unknownToSeer = true;
+            action = <Vote />;
             break;
         case 'BodyGuard':
             image = bodyguard;
+            action = <Save />;
             break;
         case 'Detective':
             image = detective;
+            action = <Select />;
             break;
         case 'Doctor':
             image = doctor;
+            action = <Save />;
             break;
         case 'Fool':
             image = fool;
             break;
         case 'Seer':
             image = seer;
+            action = <Reveal />;
             break;
         case 'Villager':
             image = villager;
             break;
         case 'Wolf Seer':
             image = wolfseer;
+            action = <Reveal />;
             break;
         case 'Gunner':
             image = gunner;
+            if(round>=4){
+                action = <Shoot />;
+            }
             break;
         case 'Werewolf':
             image = werewolf;
+            action = <Vote />;
             break;
     }
    
+    
 return (
 
     
@@ -111,9 +155,8 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
-                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
-                            <button className="cell-btn" type="submit"> Vote </button>
-                        </Link> 
+                         {/* <RevealButton isRole={rolesMap[username]} /> */}
+                         {action}
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">2</p>
@@ -122,9 +165,8 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
-                        <Link  onClick={e => (rolesMap[username]!=='Wolf Seer' && rolesMap[username]!=='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
-                            <button className="cell-btn" type="submit"> Vote </button>
-                        </Link> 
+                        {/* <RevealButton isRole={rolesMap[username]} /> */}
+                        {action}
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">3</p>
@@ -133,9 +175,9 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
-                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
-                            <button className="cell-btn" type="submit"> Reveal </button>
-                        </Link> 
+                         {/* <RevealButton isRole={rolesMap[username]} /> */}
+                         {action}
+                       
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">4</p>
@@ -144,9 +186,8 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
-                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
-                            <button className="cell-btn" type="submit"> Vote </button>
-                        </Link> 
+                        {/* <RevealButton isRole={rolesMap[username]} /> */}
+                        {action}
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">5</p>
@@ -155,9 +196,7 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
-                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
-                            <button className="cell-btn" type="submit"> Vote </button>
-                        </Link> 
+                        {action}
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">6</p>
@@ -166,9 +205,7 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
-                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
-                            <button className="cell-btn" type="submit"> Vote </button>
-                        </Link> 
+                        {action}
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">7</p>
@@ -177,9 +214,7 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
-                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
-                            <button className="cell-btn" type="submit"> Vote </button>
-                        </Link>  
+                        {action}  
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">8</p>
@@ -188,9 +223,7 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
-                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
-                            <button className="cell-btn" type="submit"> Vote </button>
-                        </Link> 
+                        {action}
                     </div>
                     <div className="grid-item">
                         <p className="cell-number">9</p>
@@ -199,9 +232,7 @@ return (
                         alt="villager-img"
                         className="player-img"
                         ></img>
-                        <Link  onClick={e => (rolesMap[username]==='Wolf Seer' && rolesMap[username]==='Seer') ? e.preventDefault() : null} to={`/game?username=${username}&room=${room}`}>
-                            <button className="cell-btn" type="submit"> Vote </button>
-                        </Link> 
+                        {action}
                     </div>
                 </div>
                 <div className="player-container">
@@ -218,23 +249,12 @@ return (
                     <h3 className="player-name">Username: {username}</h3>  <br></br>
                     <h3 className="player-name"> Role:  {rolesMap[username]} </h3>
                     
-                    
-                    {/* <ShowResults roundResults={true} />  */}
-                    {/* <RoundResults></RoundResults> */}
-                    {/* <RoundResults open={true}/> */}
-            
-                    {/* <div id="counter"></div> */}
-                    {/* <button id="reset">Reset!</button> */}
 
-                   
-                    {/* <Button onClick={() => setModalShow(true)}> 
-                        Show Round Results
-                    </Button> */}
-
-                    <RoundResults
+                    {/* <RoundResults
                         show={modalShow}
                          onHide={() => setModalShow(false)}
-                    />
+                    /> */}
+
                     
                 </div>
 
